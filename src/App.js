@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React,{useState} from 'react'
+import {
+  LoginSocialFacebook,
+} from 'reactjs-social-login';
+import {
+  FacebookLoginButton,
+} from 'react-social-login-buttons';
 
-function App() {
+const App = () => {
+  const [provider, setProvider] = useState('');
+  const [profile, setProfile] = useState();
+  const REDIRECT_URI = 'http://localhost:3000/'
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div>
+      App
+      <LoginSocialFacebook
+          appId={process.env.REACT_APP_FB_APP_ID || '280465708222810'}
+          fieldsProfile={
+            'id,first_name,last_name,middle_name,name,name_format,picture,short_name,email,gender'
+          }
+          // onLogoutSuccess={onLogoutSuccess}
+          redirect_uri={REDIRECT_URI}
+          onResolve={({ provider, data }) => {
+            setProvider(provider);
+            setProfile(data);
+            console.log("My Resolve Data",provider, data)
+          }}
+          onReject={err => {
+            console.log(err);
+          }}
         >
-          Learn React
-        </a>
-      </header>
+          <FacebookLoginButton />
+        </LoginSocialFacebook>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
