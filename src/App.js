@@ -9,7 +9,7 @@ import {
 const App = () => {
   const [provider, setProvider] = useState('');
   const [profile, setProfile] = useState();
-  const REDIRECT_URI = 'http://localhost:3000/'
+  const REDIRECT_URI = 'https://my-social-logins.vercel.app/'
   return (
     <div>
       App
