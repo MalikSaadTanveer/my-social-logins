@@ -14,12 +14,12 @@ const App = () => {
     <div>
       App
       <LoginSocialFacebook
-          appId={process.env.REACT_APP_FB_APP_ID || '280465708222810'}
-          fieldsProfile={
-            'id,first_name,last_name,middle_name,name,name_format,picture,short_name,email,gender'
-          }
+          appId={'280465708222810'}
+          // fieldsProfile={
+          //   'id,first_name,last_name,middle_name,name,name_format,picture,short_name,email,gender'
+          // }
           // onLogoutSuccess={onLogoutSuccess}
-          redirect_uri={REDIRECT_URI}
+          // redirect_uri={REDIRECT_URI}
           onResolve={({ provider, data }) => {
             setProvider(provider);
             setProfile(data);
